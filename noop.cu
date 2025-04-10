@@ -3,8 +3,15 @@
 #include <iostream>
 
 __global__ void noop_kernel(int iters) {
-    for (int i = 0; i < iters; ++i) {
-        __nanosleep(100); // Supported on Volta and higher
+    __global__ void noop_kernel(int iters) {
+        // A simple busy-wait loop to simulate delay
+        for (int i = 0; i < iters; ++i) {
+            // Simulated delay (busy-wait)
+            volatile int x = 0;
+            for (int j = 0; j < 100; ++j) {
+                x++;
+            }
+        }
     }
 }
 
